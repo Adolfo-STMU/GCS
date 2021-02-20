@@ -15,16 +15,15 @@ class Ui_Mission_Planner(object):
     def setupUi(self, Mission_Planner):
         Mission_Planner.setObjectName("Mission_Planner")
         Mission_Planner.resize(810, 485)
-        self.webView = QtWebKitWidgets.QWebView(Mission_Planner)
+        self.webView = QtWebEngineWidgets.QWebEngineView(Mission_Planner)
         self.webView.setGeometry(QtCore.QRect(30, 30, 761, 381))
         self.webView.setUrl(QtCore.QUrl("https://s.hdnux.com/photos/27/71/41/6264930/3/1200x0.jpg"))
         self.webView.setZoomFactor(1.5)
         self.webView.setObjectName("webView")
-
         self.retranslateUi(Mission_Planner)
         QtCore.QMetaObject.connectSlotsByName(Mission_Planner)
 
     def retranslateUi(self, Mission_Planner):
         _translate = QtCore.QCoreApplication.translate
-        Mission_Planner.setWindowTitle(_translate("Mission_Planner", "Dialog"))
-from PyQt5 import QtWebKitWidgets
+        Mission_Planner.setWindowTitle(_translate("Mission_Planner", "Mission Planner"))
+from PyQt5 import QtWebEngineWidgets
