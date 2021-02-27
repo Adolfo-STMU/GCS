@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ParametersWidget</class>
+ <widget class="QDockWidget" name="ParametersWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>577</width>
+    <height>574</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>DockWidget</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>40</y>
+      <width>411</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>Roll</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Yaw</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Pitch</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Throttle</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Value</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Parameters</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
