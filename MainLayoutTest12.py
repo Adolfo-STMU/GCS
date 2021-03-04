@@ -9,6 +9,10 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWebEngineWidgets
+from PyQt5.QtWidgets import QVBoxLayout, QLabel
+from PyQt5.QtGui import QFont
+from PyQt5.QtCore import QTimer, QTime, Qt
 
 
 class Ui_MainWindow(object):
@@ -29,7 +33,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout()
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.webView = QtWebKitWidgets.QWebView(self.centralwidget)
+        self.webView = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -42,7 +46,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addWidget(self.webView)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.webView_2 = QtWebKitWidgets.QWebView(self.centralwidget)
+        self.webView_2 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -52,7 +56,7 @@ class Ui_MainWindow(object):
         self.webView_2.setZoomFactor(1.200000047683716)
         self.webView_2.setObjectName("webView_2")
         self.horizontalLayout_3.addWidget(self.webView_2)
-        self.webView_3 = QtWebKitWidgets.QWebView(self.centralwidget)
+        self.webView_3 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -89,12 +93,46 @@ class Ui_MainWindow(object):
         self.pushButton_6.setPalette(palette)
         self.pushButton_6.setObjectName("pushButton_6")
         self.horizontalLayout_11.addWidget(self.pushButton_6)
+
+
+
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
         self.verticalLayout_7.setContentsMargins(5, 5, 5, 5)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.ClockPlaceholder = QtWidgets.QPushButton(self.centralwidget)
-        self.ClockPlaceholder.setObjectName("ClockPlaceholder")
-        self.verticalLayout_7.addWidget(self.ClockPlaceholder)
+
+
+
+
+        #self.ClockPlaceholder = QtWidgets.QPushButton(self.centralwidget)
+        #self.ClockPlaceholder.setObjectName("ClockPlaceholder")
+        #self.verticalLayout_7.addWidget(self.ClockPlaceholder)
+
+        # creating a vertical layout
+        layout = QVBoxLayout()
+        # creating font object
+        font = QFont('Arial', 25, QFont.Black)
+        # creating a label object
+        self.clock = QLabel()
+        # setting centre alignment to the label
+        self.clock.setAlignment(Qt.AlignCenter)
+        # setting font to the label
+        self.clock.setFont(font)
+        # adding label to the layout
+        # setting the layout to main window
+        self.verticalLayout_7.addWidget(self.clock)
+        # setting geometry of main window
+        # self.label.setGeometry(100, 100, 800, 400)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.clock.sizePolicy().hasHeightForWidth())
+        # creating a timer object
+        timer = QTimer(self.clock)
+        # adding action to timer
+        timer.timeout.connect(self.showTime)
+        # update the timer every second
+        timer.start(1000)
+
         self.Signal = QtWidgets.QPushButton(self.centralwidget)
         self.Signal.setObjectName("Signal")
         self.verticalLayout_7.addWidget(self.Signal)
@@ -110,7 +148,7 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.horizontalLayout_9.addWidget(self.label)
         self.MFDL1 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.MFDL1.sizePolicy().hasHeightForWidth())
@@ -215,7 +253,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.octant_1 = QtWebKitWidgets.QWebView(self.centralwidget)
+        self.octant_1 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -235,7 +273,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout_7)
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.octant_3 = QtWebKitWidgets.QWebView(self.centralwidget)
+        self.octant_3 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -244,7 +282,7 @@ class Ui_MainWindow(object):
         self.octant_3.setUrl(QtCore.QUrl("https://i.imgur.com/pV6cceH.png"))
         self.octant_3.setObjectName("octant_3")
         self.horizontalLayout_8.addWidget(self.octant_3)
-        self.octant_4 = QtWebKitWidgets.QWebView(self.centralwidget)
+        self.octant_4 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -268,7 +306,7 @@ class Ui_MainWindow(object):
         self.octant_5.setSizePolicy(sizePolicy)
         self.octant_5.setObjectName("octant_5")
         self.verticalLayout_4.addWidget(self.octant_5)
-        self.octant_6 = QtWebKitWidgets.QWebView(self.centralwidget)
+        self.octant_6 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -314,11 +352,79 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
+        # Gives Black border around octants and MFD
+        self.octant_1.setStyleSheet("border: 2px solid blue;")
+        self.octant_2.setStyleSheet("border: 2px solid blue;")
+        self.octant_3.setStyleSheet("border: 2px solid blue;")
+        self.octant_4.setStyleSheet("border: 2px solid blue;")
+        self.octant_5.setStyleSheet("border: 2px solid blue;")
+        self.octant_6.setStyleSheet("border: 2px solid blue;")
+        self.octant_7.setStyleSheet("border: 2px solid blue;")
+        self.octant_8.setStyleSheet("border: 2px solid blue;")
+
+
+
+
+        #self.label.setStyleSheet("border: 1px solid black;")
+        #self.label_2.setStyleSheet("border: 1px solid black;")
+
+        self.retranslateUi(MainWindow)
+
+        # Layout 1
+
+        self.pushButton.clicked.connect(self.octant_1.show)
+        self.pushButton.clicked.connect(self.octant_2.hide)
+        self.pushButton.clicked.connect(self.octant_3.hide)
+        self.pushButton.clicked.connect(self.octant_4.hide)
+        self.pushButton.clicked.connect(self.octant_5.hide)
+        self.pushButton.clicked.connect(self.octant_6.hide)
+        self.pushButton.clicked.connect(self.octant_7.hide)
+        self.pushButton.clicked.connect(self.octant_8.hide)
+
+        # Layout 2
+        self.pushButton_2.clicked.connect(self.octant_1.show)
+        self.pushButton_2.clicked.connect(self.octant_2.hide)
+        self.pushButton_2.clicked.connect(self.octant_3.show)
+        self.pushButton_2.clicked.connect(self.octant_4.hide)
+        self.pushButton_2.clicked.connect(self.octant_5.show)
+        self.pushButton_2.clicked.connect(self.octant_6.show)
+        self.pushButton_2.clicked.connect(self.octant_7.hide)
+        self.pushButton_2.clicked.connect(self.octant_8.hide)
+
+        # Layout 3
+        self.pushButton_3.clicked.connect(self.octant_1.show)
+        self.pushButton_3.clicked.connect(self.octant_2.hide)
+        self.pushButton_3.clicked.connect(self.octant_3.show)
+        self.pushButton_3.clicked.connect(self.octant_4.hide)
+        self.pushButton_3.clicked.connect(self.octant_5.hide)
+        self.pushButton_3.clicked.connect(self.octant_6.show)
+        self.pushButton_3.clicked.connect(self.octant_7.hide)
+        self.pushButton_3.clicked.connect(self.octant_8.hide)
+        # Layout 4
+        self.pushButton_4.clicked.connect(self.octant_1.show)
+        self.pushButton_4.clicked.connect(self.octant_2.hide)
+        self.pushButton_4.clicked.connect(self.octant_3.hide)
+        self.pushButton_4.clicked.connect(self.octant_4.hide)
+        self.pushButton_4.clicked.connect(self.octant_5.show)
+        self.pushButton_4.clicked.connect(self.octant_6.show)
+        self.pushButton_4.clicked.connect(self.octant_7.hide)
+        self.pushButton_4.clicked.connect(self.octant_8.hide)
+        # Layout 5
+        self.pushButton_5.clicked.connect(self.octant_1.show)
+        self.pushButton_5.clicked.connect(self.octant_2.hide)
+        self.pushButton_5.clicked.connect(self.octant_3.hide)
+        self.pushButton_5.clicked.connect(self.octant_4.hide)
+        self.pushButton_5.clicked.connect(self.octant_5.show)
+        self.pushButton_5.clicked.connect(self.octant_6.hide)
+        self.pushButton_5.clicked.connect(self.octant_7.hide)
+        self.pushButton_5.clicked.connect(self.octant_8.hide)
+       # QtCore.QMetaObject.connectSlotsByName(MainWindow)
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton_6.setText(_translate("MainWindow", "Emergency Button"))
-        self.ClockPlaceholder.setText(_translate("MainWindow", "ClockPlaceholder"))
+        self.clock.setText(_translate("MainWindow", 'hh:mm:ss'))
         self.Signal.setText(_translate("MainWindow", "Signal"))
         self.label.setText(_translate("MainWindow", "MFD L"))
         self.MFDL1.setText(_translate("MainWindow", "1"))
@@ -340,4 +446,17 @@ class Ui_MainWindow(object):
         self.octant_5.setText(_translate("MainWindow", "Octant 5"))
         self.octant_7.setText(_translate("MainWindow", "Octant 7"))
         self.octant_8.setText(_translate("MainWindow", "Octant 8"))
-from PyQt5 import QtWebKitWidgets
+
+
+
+
+
+    def showTime(self):
+        # getting current time
+        current_time = QTime.currentTime()
+
+        # converting QTime object to string
+        label_time = current_time.toString('hh:mm:ss')
+
+        # showing it to the label
+        self.clock.setText(label_time)
