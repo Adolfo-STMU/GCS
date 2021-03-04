@@ -9,12 +9,16 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWebEngineWidgets
+from PyQt5.QtWidgets import QVBoxLayout, QLabel
+from PyQt5.QtGui import QFont
+from PyQt5.QtCore import QTimer, QTime, Qt
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1280, 809)
+        MainWindow.resize(1280, 816)
         MainWindow.setMinimumSize(QtCore.QSize(1280, 720))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -42,19 +46,145 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addWidget(self.webView)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setObjectName("label")
-        self.horizontalLayout_3.addWidget(self.label)
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setObjectName("label_2")
-        self.horizontalLayout_3.addWidget(self.label_2)
+        self.webView_2 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.webView_2.sizePolicy().hasHeightForWidth())
+        self.webView_2.setSizePolicy(sizePolicy)
+        self.webView_2.setUrl(QtCore.QUrl("https://i.imgur.com/lum09wz.png"))
+        self.webView_2.setZoomFactor(1.200000047683716)
+        self.webView_2.setObjectName("webView_2")
+        self.horizontalLayout_3.addWidget(self.webView_2)
+        self.webView_3 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.webView_3.sizePolicy().hasHeightForWidth())
+        self.webView_3.setSizePolicy(sizePolicy)
+        self.webView_3.setUrl(QtCore.QUrl("https://i.imgur.com/kJaryGl.png"))
+        self.webView_3.setObjectName("webView_3")
+        self.horizontalLayout_3.addWidget(self.webView_3)
         self.verticalLayout_5.addLayout(self.horizontalLayout_3)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout.setContentsMargins(5, 5, 5, 5)
         self.horizontalLayout.setSpacing(5)
         self.horizontalLayout.setObjectName("horizontalLayout")
+        self.horizontalLayout_11 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_11.setContentsMargins(5, 5, 5, 5)
+        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
+        self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
+        self.pushButton_6.setSizePolicy(sizePolicy)
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(164, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(164, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(164, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        self.pushButton_6.setPalette(palette)
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.horizontalLayout_11.addWidget(self.pushButton_6)
 
+
+
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_7.setContentsMargins(5, 5, 5, 5)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
+
+
+
+
+        #self.ClockPlaceholder = QtWidgets.QPushButton(self.centralwidget)
+        #self.ClockPlaceholder.setObjectName("ClockPlaceholder")
+        #self.verticalLayout_7.addWidget(self.ClockPlaceholder)
+
+        # creating a vertical layout
+        layout = QVBoxLayout()
+        # creating font object
+        font = QFont('Arial', 25, QFont.Black)
+        # creating a label object
+        self.clock = QLabel()
+        # setting centre alignment to the label
+        self.clock.setAlignment(Qt.AlignCenter)
+        # setting font to the label
+        self.clock.setFont(font)
+        # adding label to the layout
+        # setting the layout to main window
+        self.verticalLayout_7.addWidget(self.clock)
+        # setting geometry of main window
+        # self.label.setGeometry(100, 100, 800, 400)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.clock.sizePolicy().hasHeightForWidth())
+        # creating a timer object
+        timer = QTimer(self.clock)
+        # adding action to timer
+        timer.timeout.connect(self.showTime)
+        # update the timer every second
+        timer.start(1000)
+
+        self.Signal = QtWidgets.QPushButton(self.centralwidget)
+        self.Signal.setObjectName("Signal")
+        self.verticalLayout_7.addWidget(self.Signal)
+        self.horizontalLayout_11.addLayout(self.verticalLayout_7)
+        self.horizontalLayout.addLayout(self.horizontalLayout_11)
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_6.setContentsMargins(5, 5, 5, 5)
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_9.setContentsMargins(5, 5, 5, 5)
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setObjectName("label")
+        self.horizontalLayout_9.addWidget(self.label)
+        self.MFDL1 = QtWidgets.QPushButton(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.MFDL1.sizePolicy().hasHeightForWidth())
+        self.MFDL1.setSizePolicy(sizePolicy)
+        self.MFDL1.setObjectName("MFDL1")
+        self.horizontalLayout_9.addWidget(self.MFDL1)
+        self.MFDL2 = QtWidgets.QPushButton(self.centralwidget)
+        self.MFDL2.setObjectName("MFDL2")
+        self.horizontalLayout_9.addWidget(self.MFDL2)
+        self.MFDL3 = QtWidgets.QPushButton(self.centralwidget)
+        self.MFDL3.setObjectName("MFDL3")
+        self.horizontalLayout_9.addWidget(self.MFDL3)
+        self.MFDL4 = QtWidgets.QPushButton(self.centralwidget)
+        self.MFDL4.setObjectName("MFDL4")
+        self.horizontalLayout_9.addWidget(self.MFDL4)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_9)
+        self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_10.setContentsMargins(5, 5, 5, 5)
+        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout_10.addWidget(self.label_2)
+        self.MFDR1 = QtWidgets.QPushButton(self.centralwidget)
+        self.MFDR1.setObjectName("MFDR1")
+        self.horizontalLayout_10.addWidget(self.MFDR1)
+        self.MFDR2 = QtWidgets.QPushButton(self.centralwidget)
+        self.MFDR2.setObjectName("MFDR2")
+        self.horizontalLayout_10.addWidget(self.MFDR2)
+        self.MFDR3 = QtWidgets.QPushButton(self.centralwidget)
+        self.MFDR3.setObjectName("MFDR3")
+        self.horizontalLayout_10.addWidget(self.MFDR3)
+        self.MFD4 = QtWidgets.QPushButton(self.centralwidget)
+        self.MFD4.setObjectName("MFD4")
+        self.horizontalLayout_10.addWidget(self.MFD4)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_10)
+        self.horizontalLayout.addLayout(self.verticalLayout_6)
         self.verticalLayout_5.addLayout(self.horizontalLayout)
         self.verticalLayout_5.setStretch(0, 1)
         self.verticalLayout_5.setStretch(1, 1)
@@ -66,100 +196,72 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_4.setContentsMargins(5, 5, 5, 5)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-
-# Push Buttons
-#Layout 1 Pushbutton
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
         self.pushButton.setSizePolicy(sizePolicy)
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_4.addWidget(self.pushButton, 0, QtCore.Qt.AlignTop)
-#layout 2 Pushbutton
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
         self.pushButton_2.setSizePolicy(sizePolicy)
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout_4.addWidget(self.pushButton_2, 0, QtCore.Qt.AlignTop)
-#Layout 3 Pushbutton
         self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
         self.pushButton_3.setSizePolicy(sizePolicy)
         self.pushButton_3.setObjectName("pushButton_3")
         self.horizontalLayout_4.addWidget(self.pushButton_3, 0, QtCore.Qt.AlignTop)
-#Layout 4 Pushbutton
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
         self.pushButton_4.setSizePolicy(sizePolicy)
         self.pushButton_4.setObjectName("pushButton_4")
         self.horizontalLayout_4.addWidget(self.pushButton_4, 0, QtCore.Qt.AlignTop)
-#Layout 5 Pushbutton
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
         self.pushButton_5.setSizePolicy(sizePolicy)
         self.pushButton_5.setObjectName("pushButton_5")
         self.horizontalLayout_4.addWidget(self.pushButton_5, 0, QtCore.Qt.AlignTop)
-
+        self.pushButton_8 = QtWidgets.QPushButton(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_8.sizePolicy().hasHeightForWidth())
+        self.pushButton_8.setSizePolicy(sizePolicy)
+        self.pushButton_8.setObjectName("pushButton_8")
+        self.horizontalLayout_4.addWidget(self.pushButton_8)
         self.verticalLayout.addLayout(self.horizontalLayout_4)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setContentsMargins(5, 5, 5, 5)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setContentsMargins(5, 5, 5, 5)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-# Emergency PushButton
-        self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
-        self.pushButton_6.setSizePolicy(sizePolicy)
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.horizontalLayout.addWidget(self.pushButton_6)
-#test button 2
-        self.pushButton_7 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_7.sizePolicy().hasHeightForWidth())
-        self.pushButton_7.setSizePolicy(sizePolicy)
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.horizontalLayout.addWidget(self.pushButton_7)
-
-#Main Window
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 22))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-
-#octants
-        self.octant_1 = QtWidgets.QLabel(self.centralwidget)
+        self.octant_1 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.octant_1.sizePolicy().hasHeightForWidth())
         self.octant_1.setSizePolicy(sizePolicy)
+        self.octant_1.setUrl(QtCore.QUrl("https://i.imgur.com/fkOW1jh.png"))
         self.octant_1.setObjectName("octant_1")
         self.horizontalLayout_7.addWidget(self.octant_1)
-
         self.octant_2 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -171,22 +273,22 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout_7)
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-
-        self.octant_3 = QtWidgets.QLabel(self.centralwidget)
+        self.octant_3 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.octant_3.sizePolicy().hasHeightForWidth())
         self.octant_3.setSizePolicy(sizePolicy)
+        self.octant_3.setUrl(QtCore.QUrl("https://i.imgur.com/pV6cceH.png"))
         self.octant_3.setObjectName("octant_3")
         self.horizontalLayout_8.addWidget(self.octant_3)
-
-        self.octant_4 = QtWidgets.QLabel(self.centralwidget)
+        self.octant_4 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.octant_4.sizePolicy().hasHeightForWidth())
         self.octant_4.setSizePolicy(sizePolicy)
+        self.octant_4.setUrl(QtCore.QUrl("https://i.imgur.com/ZWD395n.png"))
         self.octant_4.setObjectName("octant_4")
         self.horizontalLayout_8.addWidget(self.octant_4)
         self.verticalLayout_2.addLayout(self.horizontalLayout_8)
@@ -196,7 +298,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-
         self.octant_5 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -205,19 +306,18 @@ class Ui_MainWindow(object):
         self.octant_5.setSizePolicy(sizePolicy)
         self.octant_5.setObjectName("octant_5")
         self.verticalLayout_4.addWidget(self.octant_5)
-
-        self.octant_6 = QtWidgets.QLabel(self.centralwidget)
+        self.octant_6 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.octant_6.sizePolicy().hasHeightForWidth())
         self.octant_6.setSizePolicy(sizePolicy)
+        self.octant_6.setUrl(QtCore.QUrl("https://i.imgur.com/u2FZgRh.png"))
         self.octant_6.setObjectName("octant_6")
         self.verticalLayout_4.addWidget(self.octant_6)
         self.horizontalLayout_6.addLayout(self.verticalLayout_4)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-
         self.octant_7 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -226,7 +326,6 @@ class Ui_MainWindow(object):
         self.octant_7.setSizePolicy(sizePolicy)
         self.octant_7.setObjectName("octant_7")
         self.verticalLayout_3.addWidget(self.octant_7)
-
         self.octant_8 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -241,23 +340,39 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addLayout(self.verticalLayout)
         self.horizontalLayout_2.setStretch(0, 1)
         self.horizontalLayout_2.setStretch(1, 1)
-
-
-# Gives Black border around octants and MFD
-        self.octant_1.setStyleSheet("border: 1px solid black;")
-        self.octant_2.setStyleSheet("border: 1px solid black;")
-        self.octant_3.setStyleSheet("border: 1px solid black;")
-        self.octant_4.setStyleSheet("border: 1px solid black;")
-        self.octant_5.setStyleSheet("border: 1px solid black;")
-        self.octant_6.setStyleSheet("border: 1px solid black;")
-        self.octant_7.setStyleSheet("border: 1px solid black;")
-        self.octant_8.setStyleSheet("border: 1px solid black;")
-
-        self.label.setStyleSheet("border: 1px solid black;")
-        self.label_2.setStyleSheet("border: 1px solid black;")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 22))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-# Layout 1
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+
+        # Gives Black border around octants and MFD
+        self.octant_1.setStyleSheet("border: 2px solid blue;")
+        self.octant_2.setStyleSheet("border: 2px solid blue;")
+        self.octant_3.setStyleSheet("border: 2px solid blue;")
+        self.octant_4.setStyleSheet("border: 2px solid blue;")
+        self.octant_5.setStyleSheet("border: 2px solid blue;")
+        self.octant_6.setStyleSheet("border: 2px solid blue;")
+        self.octant_7.setStyleSheet("border: 2px solid blue;")
+        self.octant_8.setStyleSheet("border: 2px solid blue;")
+
+
+
+
+        #self.label.setStyleSheet("border: 1px solid black;")
+        #self.label_2.setStyleSheet("border: 1px solid black;")
+
+        self.retranslateUi(MainWindow)
+
+        # Layout 1
+
         self.pushButton.clicked.connect(self.octant_1.show)
         self.pushButton.clicked.connect(self.octant_2.hide)
         self.pushButton.clicked.connect(self.octant_3.hide)
@@ -267,7 +382,7 @@ class Ui_MainWindow(object):
         self.pushButton.clicked.connect(self.octant_7.hide)
         self.pushButton.clicked.connect(self.octant_8.hide)
 
-# Layout 2
+        # Layout 2
         self.pushButton_2.clicked.connect(self.octant_1.show)
         self.pushButton_2.clicked.connect(self.octant_2.hide)
         self.pushButton_2.clicked.connect(self.octant_3.show)
@@ -277,7 +392,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.clicked.connect(self.octant_7.hide)
         self.pushButton_2.clicked.connect(self.octant_8.hide)
 
-# Layout 3
+        # Layout 3
         self.pushButton_3.clicked.connect(self.octant_1.show)
         self.pushButton_3.clicked.connect(self.octant_2.hide)
         self.pushButton_3.clicked.connect(self.octant_3.show)
@@ -286,7 +401,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(self.octant_6.show)
         self.pushButton_3.clicked.connect(self.octant_7.hide)
         self.pushButton_3.clicked.connect(self.octant_8.hide)
-# Layout 4
+        # Layout 4
         self.pushButton_4.clicked.connect(self.octant_1.show)
         self.pushButton_4.clicked.connect(self.octant_2.hide)
         self.pushButton_4.clicked.connect(self.octant_3.hide)
@@ -295,7 +410,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.clicked.connect(self.octant_6.show)
         self.pushButton_4.clicked.connect(self.octant_7.hide)
         self.pushButton_4.clicked.connect(self.octant_8.hide)
-# Layout 5
+        # Layout 5
         self.pushButton_5.clicked.connect(self.octant_1.show)
         self.pushButton_5.clicked.connect(self.octant_2.hide)
         self.pushButton_5.clicked.connect(self.octant_3.hide)
@@ -304,26 +419,44 @@ class Ui_MainWindow(object):
         self.pushButton_5.clicked.connect(self.octant_6.hide)
         self.pushButton_5.clicked.connect(self.octant_7.hide)
         self.pushButton_5.clicked.connect(self.octant_8.hide)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+       # QtCore.QMetaObject.connectSlotsByName(MainWindow)
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "MFD1"))
-        self.label_2.setText(_translate("MainWindow", "MFD2"))
+        self.pushButton_6.setText(_translate("MainWindow", "Emergency Button"))
+        self.clock.setText(_translate("MainWindow", 'hh:mm:ss'))
+        self.Signal.setText(_translate("MainWindow", "Signal"))
+        self.label.setText(_translate("MainWindow", "MFD L"))
+        self.MFDL1.setText(_translate("MainWindow", "1"))
+        self.MFDL2.setText(_translate("MainWindow", "2"))
+        self.MFDL3.setText(_translate("MainWindow", "3"))
+        self.MFDL4.setText(_translate("MainWindow", "4"))
+        self.label_2.setText(_translate("MainWindow", "MFD R"))
+        self.MFDR1.setText(_translate("MainWindow", "1"))
+        self.MFDR2.setText(_translate("MainWindow", "2"))
+        self.MFDR3.setText(_translate("MainWindow", "3"))
+        self.MFD4.setText(_translate("MainWindow", "4"))
         self.pushButton.setText(_translate("MainWindow", "Layout1"))
         self.pushButton_2.setText(_translate("MainWindow", "Layout2"))
         self.pushButton_3.setText(_translate("MainWindow", "Layout3"))
         self.pushButton_4.setText(_translate("MainWindow", "Layout4"))
         self.pushButton_5.setText(_translate("MainWindow", "Layout5"))
-        self.pushButton_6.setText(_translate("MainWindow", "Emergency Button"))
-        self.pushButton_7.setText(_translate("MainWindow", "Testbutton2"))
-        self.octant_1.setText(_translate("MainWindow", "Octant 1"))
+        self.pushButton_8.setText(_translate("MainWindow", "Settings"))
         self.octant_2.setText(_translate("MainWindow", "Octant 2"))
-        self.octant_3.setText(_translate("MainWindow", "Octant 3"))
-        self.octant_4.setText(_translate("MainWindow", "Octant 4"))
         self.octant_5.setText(_translate("MainWindow", "Octant 5"))
-        self.octant_6.setText(_translate("MainWindow", "Octant 6"))
         self.octant_7.setText(_translate("MainWindow", "Octant 7"))
         self.octant_8.setText(_translate("MainWindow", "Octant 8"))
-from PyQt5 import QtWebEngineWidgets
+
+
+
+
+
+    def showTime(self):
+        # getting current time
+        current_time = QTime.currentTime()
+
+        # converting QTime object to string
+        label_time = current_time.toString('hh:mm:ss')
+
+        # showing it to the label
+        self.clock.setText(label_time)
