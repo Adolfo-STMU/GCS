@@ -13,6 +13,8 @@ from PyQt5 import QtWebEngineWidgets
 from PyQt5.QtWidgets import QVBoxLayout, QLabel
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QTimer, QTime, Qt
+from PyQt5.QtCore import pyqtSlot
+import redis
 
 
 class Ui_MainWindow(object):
@@ -373,52 +375,84 @@ class Ui_MainWindow(object):
 
         # Layout 1
 
-        self.pushButton.clicked.connect(self.octant_1.show)
-        self.pushButton.clicked.connect(self.octant_2.hide)
-        self.pushButton.clicked.connect(self.octant_3.hide)
-        self.pushButton.clicked.connect(self.octant_4.hide)
-        self.pushButton.clicked.connect(self.octant_5.hide)
-        self.pushButton.clicked.connect(self.octant_6.hide)
-        self.pushButton.clicked.connect(self.octant_7.hide)
-        self.pushButton.clicked.connect(self.octant_8.hide)
+        @pyqtSlot()
+        def layout1click():
+            self.pushButton.clicked.connect(self.octant_1.show)
+            self.pushButton.clicked.connect(self.octant_2.hide)
+            self.pushButton.clicked.connect(self.octant_3.hide)
+            self.pushButton.clicked.connect(self.octant_4.hide)
+            self.pushButton.clicked.connect(self.octant_5.hide)
+            self.pushButton.clicked.connect(self.octant_6.hide)
+            self.pushButton.clicked.connect(self.octant_7.hide)
+            self.pushButton.clicked.connect(self.octant_8.hide)
 
-        # Layout 2
-        self.pushButton_2.clicked.connect(self.octant_1.show)
-        self.pushButton_2.clicked.connect(self.octant_2.hide)
-        self.pushButton_2.clicked.connect(self.octant_3.show)
-        self.pushButton_2.clicked.connect(self.octant_4.hide)
-        self.pushButton_2.clicked.connect(self.octant_5.show)
-        self.pushButton_2.clicked.connect(self.octant_6.show)
-        self.pushButton_2.clicked.connect(self.octant_7.hide)
-        self.pushButton_2.clicked.connect(self.octant_8.hide)
 
-        # Layout 3
-        self.pushButton_3.clicked.connect(self.octant_1.show)
-        self.pushButton_3.clicked.connect(self.octant_2.hide)
-        self.pushButton_3.clicked.connect(self.octant_3.show)
-        self.pushButton_3.clicked.connect(self.octant_4.hide)
-        self.pushButton_3.clicked.connect(self.octant_5.hide)
-        self.pushButton_3.clicked.connect(self.octant_6.show)
-        self.pushButton_3.clicked.connect(self.octant_7.hide)
-        self.pushButton_3.clicked.connect(self.octant_8.hide)
-        # Layout 4
-        self.pushButton_4.clicked.connect(self.octant_1.show)
-        self.pushButton_4.clicked.connect(self.octant_2.hide)
-        self.pushButton_4.clicked.connect(self.octant_3.hide)
-        self.pushButton_4.clicked.connect(self.octant_4.hide)
-        self.pushButton_4.clicked.connect(self.octant_5.show)
-        self.pushButton_4.clicked.connect(self.octant_6.show)
-        self.pushButton_4.clicked.connect(self.octant_7.hide)
-        self.pushButton_4.clicked.connect(self.octant_8.hide)
-        # Layout 5
-        self.pushButton_5.clicked.connect(self.octant_1.show)
-        self.pushButton_5.clicked.connect(self.octant_2.hide)
-        self.pushButton_5.clicked.connect(self.octant_3.hide)
-        self.pushButton_5.clicked.connect(self.octant_4.hide)
-        self.pushButton_5.clicked.connect(self.octant_5.show)
-        self.pushButton_5.clicked.connect(self.octant_6.hide)
-        self.pushButton_5.clicked.connect(self.octant_7.hide)
-        self.pushButton_5.clicked.connect(self.octant_8.hide)
+        self.pushButton.clicked.connect(layout1click)
+        #top line is to connect first click to this section of code
+        self.pushButton.click()
+        #line on top is to make the first click that maps it to code
+        self.pushButton.click()
+        # second click is to auto default at layout 1
+
+        @pyqtSlot()
+        def layout2click():
+
+            self.pushButton_2.clicked.connect(self.octant_1.show)
+            self.pushButton_2.clicked.connect(self.octant_2.hide)
+            self.pushButton_2.clicked.connect(self.octant_3.show)
+            self.pushButton_2.clicked.connect(self.octant_4.hide)
+            self.pushButton_2.clicked.connect(self.octant_5.show)
+            self.pushButton_2.clicked.connect(self.octant_6.show)
+            self.pushButton_2.clicked.connect(self.octant_7.hide)
+            self.pushButton_2.clicked.connect(self.octant_8.hide)
+
+        self.pushButton_2.clicked.connect(layout2click)
+        self.pushButton_2.click()
+
+        @pyqtSlot()
+        def layout3click():
+
+            self.pushButton_3.clicked.connect(self.octant_1.show)
+            self.pushButton_3.clicked.connect(self.octant_2.hide)
+            self.pushButton_3.clicked.connect(self.octant_3.show)
+            self.pushButton_3.clicked.connect(self.octant_4.hide)
+            self.pushButton_3.clicked.connect(self.octant_5.hide)
+            self.pushButton_3.clicked.connect(self.octant_6.show)
+            self.pushButton_3.clicked.connect(self.octant_7.hide)
+            self.pushButton_3.clicked.connect(self.octant_8.hide)
+        self.pushButton_3.clicked.connect(layout3click)
+        self.pushButton_3.click()
+
+        @pyqtSlot()
+        def layout4click():
+
+            self.pushButton_4.clicked.connect(self.octant_1.show)
+            self.pushButton_4.clicked.connect(self.octant_2.hide)
+            self.pushButton_4.clicked.connect(self.octant_3.hide)
+            self.pushButton_4.clicked.connect(self.octant_4.hide)
+            self.pushButton_4.clicked.connect(self.octant_5.show)
+            self.pushButton_4.clicked.connect(self.octant_6.show)
+            self.pushButton_4.clicked.connect(self.octant_7.hide)
+            self.pushButton_4.clicked.connect(self.octant_8.hide)
+
+        self.pushButton_4.clicked.connect(layout4click)
+        self.pushButton_4.click()
+
+        @pyqtSlot()
+        def layout5click():
+
+            self.pushButton_5.clicked.connect(self.octant_1.show)
+            self.pushButton_5.clicked.connect(self.octant_2.hide)
+            self.pushButton_5.clicked.connect(self.octant_3.hide)
+            self.pushButton_5.clicked.connect(self.octant_4.hide)
+            self.pushButton_5.clicked.connect(self.octant_5.show)
+            self.pushButton_5.clicked.connect(self.octant_6.hide)
+            self.pushButton_5.clicked.connect(self.octant_7.hide)
+            self.pushButton_5.clicked.connect(self.octant_8.hide)
+
+        self.pushButton_5.clicked.connect(layout5click)
+        self.pushButton_5.click()
+
        # QtCore.QMetaObject.connectSlotsByName(MainWindow)
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
