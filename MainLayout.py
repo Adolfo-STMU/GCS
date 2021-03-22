@@ -54,8 +54,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.webView_2.sizePolicy().hasHeightForWidth())
         self.webView_2.setSizePolicy(sizePolicy)
-        self.webView_2.setUrl(QtCore.QUrl("https://i.imgur.com/lum09wz.png"))
-        self.webView_2.setZoomFactor(1.200000047683716)
+        self.webView_2.setUrl(QtCore.QUrl("https://i.imgur.com/kJaryGl.png"))
+        self.webView_2.setZoomFactor(1.0000000)
         self.webView_2.setObjectName("webView_2")
         self.horizontalLayout_3.addWidget(self.webView_2)
         self.webView_3 = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
@@ -64,7 +64,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.webView_3.sizePolicy().hasHeightForWidth())
         self.webView_3.setSizePolicy(sizePolicy)
-        self.webView_3.setUrl(QtCore.QUrl("https://i.imgur.com/kJaryGl.png"))
+        self.webView_3.setUrl(QtCore.QUrl("https://i.imgur.com/1VjNeRV.png"))
+        self.webView_3.setZoomFactor(1.5000000)
         self.webView_3.setObjectName("webView_3")
         self.horizontalLayout_3.addWidget(self.webView_3)
         self.verticalLayout_5.addLayout(self.horizontalLayout_3)
@@ -262,6 +263,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.octant_1.sizePolicy().hasHeightForWidth())
         self.octant_1.setSizePolicy(sizePolicy)
         self.octant_1.setUrl(QtCore.QUrl("https://i.imgur.com/fkOW1jh.png"))
+        self.octant_1.setZoomFactor(1.800000)
         self.octant_1.setObjectName("octant_1")
         self.horizontalLayout_7.addWidget(self.octant_1)
         self.octant_2 = QtWidgets.QLabel(self.centralwidget)
@@ -385,6 +387,7 @@ class Ui_MainWindow(object):
             self.pushButton.clicked.connect(self.octant_6.hide)
             self.pushButton.clicked.connect(self.octant_7.hide)
             self.pushButton.clicked.connect(self.octant_8.hide)
+            self.octant_1.setZoomFactor(1.800000)
 
 
         self.pushButton.clicked.connect(layout1click)
@@ -405,9 +408,11 @@ class Ui_MainWindow(object):
             self.pushButton_2.clicked.connect(self.octant_6.show)
             self.pushButton_2.clicked.connect(self.octant_7.hide)
             self.pushButton_2.clicked.connect(self.octant_8.hide)
+            self.octant_1.setZoomFactor(1.00000)
 
         self.pushButton_2.clicked.connect(layout2click)
         self.pushButton_2.click()
+
 
         @pyqtSlot()
         def layout3click():
@@ -420,8 +425,10 @@ class Ui_MainWindow(object):
             self.pushButton_3.clicked.connect(self.octant_6.show)
             self.pushButton_3.clicked.connect(self.octant_7.hide)
             self.pushButton_3.clicked.connect(self.octant_8.hide)
+            self.octant_1.setZoomFactor(1.00000)
         self.pushButton_3.clicked.connect(layout3click)
         self.pushButton_3.click()
+
 
         @pyqtSlot()
         def layout4click():
@@ -434,9 +441,11 @@ class Ui_MainWindow(object):
             self.pushButton_4.clicked.connect(self.octant_6.show)
             self.pushButton_4.clicked.connect(self.octant_7.hide)
             self.pushButton_4.clicked.connect(self.octant_8.hide)
+            self.octant_1.setZoomFactor(1.00000)
 
         self.pushButton_4.clicked.connect(layout4click)
         self.pushButton_4.click()
+
 
         @pyqtSlot()
         def layout5click():
@@ -449,9 +458,12 @@ class Ui_MainWindow(object):
             self.pushButton_5.clicked.connect(self.octant_6.hide)
             self.pushButton_5.clicked.connect(self.octant_7.hide)
             self.pushButton_5.clicked.connect(self.octant_8.hide)
+            self.octant_1.setZoomFactor(1.00000)
 
         self.pushButton_5.clicked.connect(layout5click)
         self.pushButton_5.click()
+
+        self.octant_1.setZoomFactor(1.800000)
 
        # QtCore.QMetaObject.connectSlotsByName(MainWindow)
     def retranslateUi(self, MainWindow):
