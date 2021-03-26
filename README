@@ -18,3 +18,6 @@ Fixed UI for initial Presentation of layout 1
 
 03/25/21 
 Updated Main to be more readable
+
+03/26/21
+Updated Main File that has basic error handing as well as Kit Replacement for faster importing of UI file
